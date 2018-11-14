@@ -39,7 +39,7 @@ Computational knee models can use different representations of ligaments (\autor
     \centering
     \includegraphics[width=0.35\linewidth]{../img/Knee_ACL_Close.png}
     \includegraphics[width=0.35\linewidth]{../img/Knee_ACL_Springs_Close.png}
-    \caption{A comparison of the anterior cruciate ligament (ACL) modeled as a (left) continuum and (right) a bundle of springs.}
+    \caption{A comparison of the anterior cruciate ligament (ACL) modeled as a (left) continuum and (right) a bundle of nine individual springs arranged across the ligament's insertion site.}
     \label{fig:continuumSpringAcl}
 \end{figure}
 
@@ -52,7 +52,8 @@ A calibrated knee model that represents ligaments as springs could be used to es
 % ---------------------------------------------------
 \section{Overview}
 %[Research questions and objectices: The purpose of this work is to develop an approach to defining ligament prestrain in a continuum ligament model.] 
-The overall purpose of this work is to (1) develop an approach to estimating specimen-specific nonhomogeneous prestrain in ligaments that are represented as a continuum and (2) compare the performance of the continuum ligament representation to an equivalent spring ligament representation.
+The overall purpose of this work is to (1) develop an approach to estimating specimen-specific nonhomogeneous prestrain in ligaments that are represented as a continuum and (2) compare the performance of the continuum ligament representation to an equivalent spring ligament representation. To achieve this goal, experimental testing was conducted to collect specimen-specific MR images and force-displacement data. The MR images were used to generate specimen-specific geometry, including femur and tibia surfaces, and the insertion sites of ligaments (\autoref{fig:kneeModel}). The forward kinematics model was used to simulate experimental tests in an inverse modeling scheme. This scheme used optimization to estimate ligament slack length by minimizing the residual between the calculated and experimentally measured tibial forces. This process is similar to other studies that have used inverse modeling to estimate ligament properties \citep{blankevoort_validation_1996,baldwin_dynamic_2012,ewing_estimating_2015,harris_combined_2016}.
+%Specimen-specific data was collected from experimental laxity-style distraction tests (\autoref{fig:kneeModel}). The experimental data was used to generate a forward kinematics knee model that represented ligaments as springs (\autoref{fig:kneeModel}), and the slack-length for every ligament was estimated using inverse modeling \citep{blankevoort_validation_1996,baldwin_dynamic_2012,ewing_estimating_2015,harris_combined_2016}.
 
 %[Approaches: ]
 This approach assumes that the calibrated spring ligament model recreates the ligament's forces at a given joint position. These loading data could be used to define the boundary conditions for a inverse elastostatics analysis of a ligament. \cite{lu_computational_2007} used this approach to estimate the prestrain in blood vessels, where 
@@ -63,6 +64,22 @@ This approach assumes that the calibrated spring ligament model recreates the li
     \caption{An example of the forces and moments that the alPCL exerts on the tibia at four points throughout a distraction test at 0\textsuperscript{o}, 30\textsuperscript{o}, 60\textsuperscript{o}, 90\textsuperscript{o} flexion.}
     \label{fig:alPclForce}
 \end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.85\linewidth]{../img/TwoColumnFig.png}
+    \caption{(a) A similified representation of the joint forces during an intact laxity-style test compared to a distraction laxity-style test. (b) The specimen with resected femoral articulating surfaces. (c) The knee model with 11 ligament bundles represented. (inset) The non-linear spring model, and the definition of slack lenghth for a ligament with five fibers.}
+    \label{fig:kneeModel}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{../img/InverseModelingFlowChart.png}
+    \caption{An overview of the inverse modeling scheme.}
+    \label{fig:inverseModelingScheme}
+\end{figure}
+
+%[Significance of the work]
 
 Ligaments are commonly represented as bundles of nonlinear uniaxial springs \citep{blankevoort_validation_1996,baldwin_efficient_2009,ewing_estimating_2015}, or as a solid continuum \citep{gardiner_subject-specific_2003,pena_three-dimensional_2006,dhaher_effect_2010} (\autoref{fig:continuumSpringAcl}). Joint mechanics have been shown to be sensitive to ligament prestrain \citep{baldwin_efficient_2009}, and experimental studies have shown that prestrain is not uniform throughout a ligament \citep{hull_strain_1996,gardiner_strain_2001}. Studies that utilize spring ligament representations can simulate nonhomogeneous prestrain in a ligament by varying the prestrain in each spring that composes a specific ligament. Studies that utilize continuum ligament representations either apply uniform prestrain \citep{limbert_three-dimensional_2004,song_three-dimensional_2004,beidokhti_influence_2017}, or apply nonhomogeneous prestrain based on values reported in the literature \citep{pena_three-dimensional_2006,dhaher_effect_2010}, where prestrains are derived from a combination of experimental studies and results of inverse modeling studies that utilize spring ligament models.
 
