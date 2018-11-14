@@ -1,0 +1,48 @@
+\documentclass{report}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\doublespacing % Set double spacing.
+\usepackage{color, soul}
+\usepackage{graphicx} %package to manage images
+\usepackage{amsmath} % make figures/tables stay in the section they are declared in.
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem} % Enumerate with additional options
+\usepackage{hyperref} % Use \autoref to automatically put figure/table in front of the reference
+\usepackage[round,authoryear]{natbib} % The bibliography package and settings
+\bibliographystyle{plainnat}
+
+\author{William Zaylor}
+\title{Snappy Dissertation Title}
+    
+\begin{document}
+\maketitle
+
+% =====================================================================
+\chapter{Introduction}
+\input{Introduction.tex}
+
+% =====================================================================
+\chapter{Distraction Experiment}
+\input{DistractionExperiment.tex}
+
+% =====================================================================
+\chapter{Inverse Modeling}
+\input{InverseModeling.tex}
+
+% =====================================================================
+\chapter{Bibliography}
+\bibliography{MyLibrary}
+
+\end{document}
+
+% =====================================================================
+% Style comments/notes:
+% 6-DOF
+% degree-of-freedom
+% laxity-style
+% nonhomogeneous
+% nonlinear
+% orthopedic
+% soft-tissue
+% specimen-specific
+% stress-free

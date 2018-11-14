@@ -1,0 +1,234 @@
+\documentclass{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{color, soul}
+\usepackage{graphicx} %package to manage images
+\usepackage{amsmath} % make figures/tables stay in the section they are declared in.
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem} % Enumerate with additional options
+\usepackage{hyperref} % Use \autoref to automatically put figure/table in front of the reference
+\usepackage[round,authoryear]{natbib} % The bibliography package and settings
+\bibliographystyle{plainnat}
+
+\author{William Zaylor}
+\title{Dissertation Proposal Outline}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\subsection{Background}
+\begin{itemize}
+    \item Knee models are used to evaluate knee mechanics in healthy, diseased, and surgically repaired joints.
+    \item Ligament prestrain is important (\texthl{discussion and citations about how ACL loading during ACL replacement surgery effects outcomes}).
+    \item Ligaments behave like an anisotropic material. Ligaments have been modeled as an elastic ground matrix that is embedded with fibers that are active in tension (see \citep{beidokhti_influence_2017} for actual references).
+    \item Ligament properties can affect joint mechanics, and ligament representation in knee models varies.
+    \begin{itemize}
+        \item Few studies have compared the effects of different ligament representation on estimated joint mechanics.
+        \item \cite{beidokhti_influence_2017} compared these effects of different ligament representation for laxity loading and \cite{orozco_effect_2018} performed a similar comparison for walking.
+        \item Comparing continuum ligament models with MCL prestrain, and no prestrain, \cite{maas_general_2016} showed nearly 4 times increase in lateral contact force during simulated valgus tests.
+    \end{itemize}
+    \item Continuum ligament representations that are homogeneous:
+    \begin{itemize}
+        \item \cite{beidokhti_influence_2017} applied prestrain through thermal loading (\texthl{assume uniform because it is not stated that it was nonhomogeneous?}).
+        \item \cite{song_three-dimensional_2004} represented the anteromedial and posterolateral ACL as two distinct continuum bundles, and uniformly applied a 3\% prestrain to both bundles.
+        \item \cite{limbert_three-dimensional_2004} used uniform prestrain of 4.4\% in the ACL.
+    \end{itemize}
+    \item Continuum ligament representations that are nonhomogeneous:
+    \begin{itemize}
+        \item \cite{dhaher_effect_2010} used experimental data from \cite{gardiner_strain_2001} to define nonhomogeneous MCL prestrain. Nonhomogenous prestrain for the ACL and LCL was defined from a computational study by \cite{pena_three-dimensional_2006}, who used the prestrain values that \cite{blankevoort_ligament-bone_1991} used (who used spring ligament representations, and defined prestrain and stiffness from the literature also). Though it is unclear how \cite{dhaher_effect_2010} used the ACL prestrains used by \cite{pena_three-dimensional_2006}.
+        \item \cite{pena_three-dimensional_2006} used nonhomogenous prestrains.
+        \item \cite{weiss_three-dimensional_2005} states "there is not a joint configuration in which the in situ strain is homogeneous".
+        \item \cite{gardiner_subject-specific_2003} applied subject specific prestrains and material proeprties to FE simulations. They also showed that using generic (averaged) material properties and subject specific perstrain had little effect on the estimated strain in the MCL. However use of subject specific material properties and generic prestrain lead to poor predictions of specimen specific strain.
+    \end{itemize}
+    \item Gap may be this: Previous studies that have used nonhomogeneous prestrain in continuum models have obtained the prestrains from the literature. This work will develop a procedure for using a calibrated spring based model to estimate nonhomogeneous prestrain in a continuum model.
+    \begin{itemize}
+        \item Could be used in conjunction with calibrated spring models, or with experimental studies that used measured resection to estimate ligament force throughout loading.
+    \end{itemize}
+    \item Non-uniform ligament prestrain can be simulated by modeling the ligament as a bundle of two or more springs.
+    \begin{itemize}
+        \item Usage of a continuum representation of ligaments with a non-uniform prestrain may improve model fidelity.
+        \item Non-uniform prestrain in continuum ligament representations is possible if ligament reaction forces are known for a given reference position. 
+        \item \cite{maas_general_2016} applied an iterative approach similar to \cite{sellier_iterative_2011} to estimate ligament prestrain. 
+        \item \cite{lu_computational_2007} described an \textit{inverse elastostatics} approach to estimating prestrain in blood vessels. This approach modified finite element software to use a Lagrangian definition of displacement (as opposed to an Eularian definition of displacement). If ligament forces are known, like in the methods used to \cite{maas_general_2016}, then the stress-free state of the ligament can be estimated with one finite element analysis, as opposed to multiple iterations.
+    \end{itemize}
+    \item Studies have shown that individual parts of a ligament are recruited at different positions.
+    \begin{itemize}
+        \item \cite{amiri_multiple-bundle_2011} demonstrated uneven length changes of the cruciate ligaments (ACL and PCL) throughout flexion.
+        \item \cite{hosseini_vivo_2014,liu_vivo_2011} showed nonhomogeneous length change patterns of the MCL in flexion.
+        \item \cite{blankevoort_recruitment_1991} showed different recruitment probability between anterior and posterior parts of ligaments.
+    \end{itemize}
+    
+\end{itemize}
+\subsection{Overview}
+Reserch Questions and Objectives:
+\begin{itemize}
+    \item One purpose of this work is to develop a method of generating a continuum ligament model that has prestrain defined using an equivalent spring model.
+\end{itemize}
+Approaches:
+\begin{itemize}
+    \item The approach uses novel experimental loading in an inverse modeling scheme to estimate specimen-specific slack lengths with a model that represents ligaments as bundles of springs.
+    \item Estimate ligament slack lengths will be used to generate boundary conditions for defining the prestrain in a continuum ligament model. The continuum ligament prestrain will be determined by using finite element analysis that uses an Eularian definition of displacement.
+    \begin{itemize}
+        \item The ability of this method to generate `unique' results will be evaluated. The continuum ligament's prestrain will be estimated using different boundary conditions, and each calibrated model's forces will be compared at a common position.
+        \item Comparison between the joint forces generated by the calibrated spring and continuum ligament representations will be used to evaluate the continuum ligament's performance.
+    \end{itemize}
+\end{itemize}
+Significance:
+\begin{itemize}
+    \item Develop a more efficient method of estimating slack-length in models that represent ligaments a springs and a continuum.
+    \item Could allow for a more direct comparison of the performance of ligament models.
+\end{itemize}
+\subsubsection{Specific Aims}
+This is a summary of the specific aims that are described in the following sections.
+\begin{itemize}
+    \item Perform novel physical testing to acquire experimental data to use as a reference for inverse modeling.
+    \item Use inverse modeling to estimate specimen-specific ligament slack length.
+    \item Reduce the set of physical tests to a minimum set needed to estimate ligament slack length
+    \item Use a modified finite element analysis to estimate prestrain in a continuum ligament model.
+\end{itemize}
+
+\section{Research Approaches}
+\subsection{Experimental Testing}
+\subsubsection{Introduction}
+\begin{itemize}
+    \item The purpose of this work is to conduct physical distraction tests that recruit the primary restraints in the tibiofemoral joint while also avoiding joint contact.
+    \item Experimental laxity tests are normally conducted to test the recruitment of the knee's ligaments \cite{imhauser_new_2017,erdemir_open_2016}
+\end{itemize}
+
+\subsubsection{Methods}
+\begin{itemize}
+    \item MR image the specimen for specimen-specific modeling.
+    \item Perform modified laxity-style test at 0\textsuperscript{o},30\textsuperscript{o}, 60\textsuperscript{o}, 90\textsuperscript{o} flexion.
+    \begin{itemize}
+        \item Test are preformed with a 6-DOF robot.
+        \item The modified loads either apply a nominal distraction force throughout the test, or apply increasing distraction load with fixed varus.
+    \end{itemize}
+    \item Measure the applied joint force and corresponding joint motion throughout testing.
+\end{itemize}
+\subsubsection{Results and Discussion}
+\begin{itemize}
+    \item The results show that the joint did not experience an unanatomic amount joint motion.
+    \begin{itemize}
+        \item The joint did not unanatomically low or high amounts of joint motion.
+    \end{itemize}
+    \item Report variations in joint motion between flexion angles.
+    \item The variations in joint motion indicate that ligament recruitment may have varied between laxity-style distraction tests.
+    \begin{itemize}
+        \item For example, for every laxity-style test, the joint's response may not have been dominated by one or two ligaments.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Inverse Modeling - Slack Length}
+\subsubsection{Introduction}
+\begin{itemize}
+    \item Current methods of estimating ligament slack length use inverse modeling, however these approaches incorporate joint contact in their knee models, and contact forces may confound the estimated ligament slack lengths.
+    \begin{itemize}
+        \item These approaches assume that for a given joint position, the external forces balance with internal ligament and joint contact forces \citep{blankevoort_validation_1996}
+    \end{itemize}
+    \item Novel experimental loading could be used in an inverse modeling scheme to estimate ligament slack length without the confounding effects of joint contact.
+    \begin{itemize}
+        \item This approach focuses the joint's force-displacement behavior on the soft-tissues, and this may yield a more accurate estimations of ligament slack length.
+    \end{itemize}
+    \item The purpose of this work is to use novel experimental loading in an inverse modeling scheme to estimate ligament slack length.
+\end{itemize}
+\subsubsection{Methods}
+\begin{itemize}
+    \item Generate specimen-specific forward kinematics knee model.
+    \item Use optimization to estimate ligament slack lengths.
+    \begin{itemize}
+        \item Input slack lengths into the knee model and simulate experimental test and calculate the corresponding joint kinetics. The optimization minimizes the difference between model and experimentally measured joint kinetics.
+    \end{itemize}
+    \item Evaluate the calibrated model's performance.
+    \begin{itemize}
+        \item Input the estimated slack lengths into the knee model and simulate tests that were not included in the optimization. Calculate the RMS error between the model's joint kinetics and the experimentally measured values.
+    \end{itemize}
+\end{itemize}
+\subsubsection{Results and Discussion}
+\begin{itemize}
+    \item Report RMS error between model and experimentally measured joint kinetics
+    \begin{itemize}
+        \item For the tests included in the optimization.
+        \item For the test not included in the optimization.
+    \end{itemize}
+    \item Report ligament forces at different flexion angles.
+    \item Discuss the RMS errors for the tests included and not included in the optimization.
+    \item Discuss ligament recruitment patterns, and compare to the literature.
+    \item Discuss improvements that can be made to the study:
+    \begin{itemize}
+        \item More specimens should be evaluated to validate the methods.
+    \end{itemize}
+    \item Future work:
+    \begin{itemize}
+        \item Evaluate the difference between representing ligaments as springs and a continuum.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Data Reduction - ligament recruitment}
+\subsubsection{Introduction}
+\begin{itemize}
+    \item The purpose of this analysis is to determine a subset of joint distraction tests that target (1) all of the modeled ligaments and (2) a subset of tests that target a small set of the modeled ligaments.
+    \item A subset of laxity-style distraction tests that targets all of the primary ligaments would be useful for future work.
+    \item A set of experimental tests that target one or two ligaments would be useful for other specific aims.
+\end{itemize}
+\subsubsection{Methods}
+\begin{itemize}
+    \item Calculate every ligament's recruitment probability for every physical test that was performed during physical testing.
+    \item Determine a subset of tests where every ligament has a recruitment probability above a given threshold value.
+    \begin{itemize}
+        \item Compare this subset between the two tested specimens.
+    \end{itemize}
+\end{itemize}
+\subsubsection{Results and Discussion}
+\begin{itemize}
+    \item Compare the tests that are common and uncommon between the two tested specimens.
+    \item Report a recommended set of laxity-style distraction tests for future work.
+    \item Report specific tests that only target a small set of ligaments.
+\end{itemize}
+
+\subsection{Continuum Ligament Model - Prestrain}
+\subsubsection{Introduction}
+\begin{itemize}
+    \item Ligaments are generally represented as either a single spring, a bundle of springs, or as a solid material (continuum).
+    \item Springs are more simple to model, and more computationally efficient. However:
+    \begin{itemize}
+        \item springs cannot give estimations of stress.
+        \item a single spring cannot model non-uniform prestrain across a ligament.
+        \item a bundle of springs may be confounded by non-uniform prestrain across the ligament.
+    \end{itemize} 
+    \item Continuum representations of ligaments can give estimations of stress, and they have the potential to represent non-uniform prestrain. However ligament prestrain may be computationally expensive to estimate through optimization.
+    \item Previous work has used known or assumed loads to iteratively estimate ligament prestrain \citep{maas_general_2016}.
+    \begin{itemize}
+        \item This iterative approach uses a finite element method that uses a Lagrangian description of motion.
+    \end{itemize}
+    \item Similar studies have augmented existing finite element software to use an Eularian description of motion \citep{lu_computational_2007} to estimate prestrain in blood vessels (\textbf{verify this}).
+    \begin{itemize}
+        \item This approach solves for the prestrain in one evaluation, not iteratively.
+    \end{itemize}
+    \item The purpose of this work is to develop a method of defining prestrain in a continuum ligament model based on boundary conditions defined from a calibrated ligament spring model.
+    \begin{itemize}
+        \item Use the ACL as a test case.
+    \end{itemize}
+\end{itemize}
+\subsubsection{Methods}
+\begin{itemize}
+    \item Define a joint position where the amACL and plACL spring models are recruited.
+    \item Use this joint position to define the loaded state for the continuum ACL model.
+    \begin{itemize}
+        \item The forces and moments from the spring model's joint position define the loads that are applied to the continuum ACL model.
+        \item The FE analysis is used to position the continuum model in the loaded joint position. It is assumed that changes to the ACL geometry due to this analysis are negligible compared to variation in ACL geometry from segmentation.
+        \item Also assume that ACL material properties are similar to those reported in the literature.
+    \end{itemize}
+    \item Calculate the stress-free ACL geometry with a modified finite element analysis that uses an Eularian description of motion.
+    \item Determine the calibrated continuum ACL forces and the spring model's force in different joint positions.
+    \item Perform a sensitivity analysis on different ACL properties to determine the range in variations in joint forces due to material properties.
+\end{itemize}
+\subsubsection{Results and Discussion}
+\begin{itemize}
+    \item Compare the joint forces generated by the continuum and spring representation of the ACL.
+    \item Compare the differences in joint forces between the two representations to the variantions in force due to changes in material properties.
+\end{itemize}
+
+\section{Bibliography}
+\bibliography{../MyLibrary}
+
+\end{document}
