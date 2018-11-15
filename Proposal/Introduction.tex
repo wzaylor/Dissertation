@@ -27,43 +27,46 @@
 %[Ligaments are important to joint function] 
 Ligaments and articular contact define the limits of passive joint motion. Understanding the the forces acting across the knee and the resulting joint motion is important when assessing the causes and treatment of knee pathology \citep{thelen_co-simulation_2014} (\texthl{find better citation}).
 
-%[The knee model's kinetics and contact mechanics are affected by ligament properties] 
-Studies have shown that variations in ligament properties can affect the knee's kinematics and contact mechanics under simulated passive \citep{baldwin_efficient_2009,dhaher_effect_2010} and dynamic \citep{smith_influence_2016-1} joint loading.
-
 %[Computational knee models are used to evaluate different knee treatments and pathology]
 
-%[Computational models represent ligaments as nonlinear springs or an anisotropic continuum.] 
-Computational knee models can use different representations of ligaments (\autoref{fig:continuumSpringAcl}), however there are few studies that evaluate the effects of ligament representation on the model's performance, and improvements can be made to the studies that have addressed this topic. \cite{beidokhti_influence_2017} used inverse modeling to generate comparable spring and continuum ligament models. The two types of models were considered equivalent if they yielded joint forces that were similar to experimentally measured values, however it was not shown that the spring and continuum ligament models yielded similar ligament forces under the same loading. Additionally, the prestrain definition may not be equivalent between the spring and continuum ligament representations. Conversely, \cite{orozco_effect_2018} applied similar prestrain to their spring and continuum ligament models, however prestrain was uniformly applied throughout each ligament. Joint mechanics have been shown to be sensitive to ligament prestrain \citep{baldwin_efficient_2009}, and experimental studies have shown that prestrain is not uniform throughout a ligament \citep{hull_strain_1996,gardiner_strain_2001}.
+\subsection*{Specimen-Specific Knee Models}
+%[The knee model's kinetics and contact mechanics are affected by ligament properties]
+Specimen-specific knee models are composed of specimen-specific geometry and material properties. The geometry is normally generated from MR imaging, and material properties for hard and soft tissues are determined with either experimentation \citep{gardiner_subject-specific_2003} or inverse modeling \citep{blankevoort_validation_1996,baldwin_efficient_2009,ewing_estimating_2015,harris_combined_2016}. The joint's kinematics and contact mechanics have been shown to be sensitive to variations in ligament properties under passive \citep{baldwin_efficient_2009,dhaher_effect_2010,ewing_estimating_2015} and dynamic \citep{smith_influence_2016-1} joint loading, therefore specimen-specific ligament properties are needed to model the joint's behavior \citep{ewing_estimating_2015}. In addition to constitutive properties, ligament prestrain must also be defined because each ligament's geometry is defined from MR images, where the ligaments may be under an unknown amount of load \citep{weiss_computational_2001,maas_general_2016}. Specimen-specific prestrain is important to define because joint kinematics have been shown to more sensitive to prestrain than stiffness \citep{baldwin_efficient_2009}. It has been shown that prestrain is not uniform throughout a ligament \citep{hull_strain_1996,gardiner_strain_2001} , and the way that prestrain is applied to a ligament varies depending on the ligament representation.
+
+\subsection*{Ligament Representation and Prestrain Definition}
+%[Computational models represent ligaments as nonlinear springs or an anisotropic continuum.]
+Ligaments are commonly represented as either bundles of nonlinear uniaxial springs \citep{blankevoort_ligament-bone_1991,baldwin_efficient_2009,amiri_computational_2012,kia_multibody_2016}, or as a solid continuum \citep{gardiner_subject-specific_2003,pena_three-dimensional_2006,dhaher_effect_2010} (\autoref{fig:continuumSpringAcl}). Studies that utilize spring ligament representations can simulate nonhomogeneous prestrain in a ligament by varying the prestrain in each spring that composes a specific ligament. With the exception of \cite{gardiner_subject-specific_2003}, specimen-specific nonhomogeneous prestrain is not utilized in continuum ligament models. Studies that utilize continuum ligament representations either apply uniform prestrain \citep{limbert_three-dimensional_2004,song_three-dimensional_2004,beidokhti_influence_2017}, or nonhomogeneous prestrain based on values reported in the literature \citep{pena_three-dimensional_2006,dhaher_effect_2010}, where prestrains are derived from a combination of experimental studies and results of inverse modeling studies that utilize spring ligament models.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.35\linewidth]{../img/Knee_ACL_Close.png}
-    \includegraphics[width=0.35\linewidth]{../img/Knee_ACL_Springs_Close.png}
+    \includegraphics[width=0.45\linewidth]{../img/Knee_ACL_Springs_Close.png}
     \caption{A comparison of the anterior cruciate ligament (ACL) modeled as a (left) continuum and (right) a bundle of nine individual springs arranged across the ligament's insertion site.}
     \label{fig:continuumSpringAcl}
 \end{figure}
 
-%[Prestrain can be assigned uniformly or nonuniformly across a continuum or spring model. Nonuniform continuum models assign prestrain directly from experimental data, where spring models have estimated prestrain with an inverse modeling scheme.] 
-Nonhomogeneous prestrain can be assigned to spring and continuum ligament representations. Inverse modeling has been used to estimate specimen-specific ligament properties (including nonhomogeneous prestrain) for knee models that represent ligaments as springs \citep{blankevoort_validation_1996,baldwin_efficient_2009,ewing_estimating_2015,harris_combined_2016}. With the exception of \cite{gardiner_subject-specific_2003}, specimen-specific nonhomogeneous prestrain is not utilized in continuum ligament models. Literature is used to define prestrain values \citep{pena_three-dimensional_2006,dhaher_effect_2010}, which are derived from a combination of experimental studies and results of inverse modeling studies that utilize spring ligament models.
+There are few studies that evaluate the effects of ligament representation on the model's performance, and improvements can be made to the studies that have addressed this topic. \cite{beidokhti_influence_2017} used inverse modeling to generate comparable spring and continuum ligament models. The two types of models were considered equivalent if they yielded joint forces that were similar to experimentally measured values, however it was not shown that the spring and continuum ligament models yielded similar ligament forces at at a given joint position. Additionally, the prestrain definition may not be equivalent between the spring and continuum ligament representations. Conversely, \cite{orozco_effect_2018} applied similar prestrain to their spring and continuum ligament models, however prestrain was uniformly applied throughout each ligament.
 
-%[Prestrain in a continuum model could be informed with a corresponding calibrated spring model.]
-A calibrated knee model that represents ligaments as springs could be used to estimate specimen-specific nonhomogeneous prestrain in continuum representations of ligaments. \cite{lu_computational_2007} estimated the prestrain in blood vessels using an inverse elastostatics approach, where the deformed state of the geometry and forces were known, and the stress-free shape of the geometry was estimated. 
+% %[Prestrain can be assigned uniformly or nonuniformly across a continuum or spring model. Nonuniform continuum models assign prestrain directly from experimental data, where spring models have estimated prestrain with an inverse modeling scheme.] 
+% Nonhomogeneous prestrain can be assigned to spring and continuum ligament representations. Inverse modeling has been used to estimate specimen-specific ligament properties (including nonhomogeneous prestrain) for knee models that represent ligaments as springs \citep{blankevoort_validation_1996,baldwin_efficient_2009,ewing_estimating_2015,harris_combined_2016}. With the exception of \cite{gardiner_subject-specific_2003}, specimen-specific nonhomogeneous prestrain is not utilized in continuum ligament models. Literature is used to define prestrain values \citep{pena_three-dimensional_2006,dhaher_effect_2010}, which are derived from a combination of experimental studies and results of inverse modeling studies that utilize spring ligament models.
+
+% %[Prestrain in a continuum model could be informed with a corresponding calibrated spring model.]
+% A calibrated knee model that represents ligaments as springs could be used to estimate specimen-specific nonhomogeneous prestrain in continuum representations of ligaments. \cite{lu_computational_2007} estimated the prestrain in blood vessels using an inverse elastostatics approach, where the deformed state of the geometry and forces were known, and the stress-free shape of the geometry was estimated.
+\subsection*{Nonhomogeneous Prestrain}
+%[Nonhomogeneous prestrain has been estimated using two approaches]
 
 % ---------------------------------------------------
 \section{Overview}
 %[Research questions and objectices: The purpose of this work is to develop an approach to defining ligament prestrain in a continuum ligament model.] 
-The overall purpose of this work is to (1) develop an approach to estimating specimen-specific nonhomogeneous prestrain in ligaments that are represented as a continuum and (2) compare the performance of the continuum ligament representation to an equivalent spring ligament representation. To achieve this goal, experimental testing was conducted to collect specimen-specific MR images and force-displacement data. The MR images were used to generate specimen-specific geometry, including femur and tibia surfaces, and the insertion sites of ligaments (\autoref{fig:kneeModel}). The forward kinematics model was used to simulate experimental tests in an inverse modeling scheme. This scheme used optimization to estimate ligament slack length by minimizing the residual between the calculated and experimentally measured tibial forces. This process is similar to other studies that have used inverse modeling to estimate ligament properties \citep{blankevoort_validation_1996,baldwin_dynamic_2012,ewing_estimating_2015,harris_combined_2016}.
-%Specimen-specific data was collected from experimental laxity-style distraction tests (\autoref{fig:kneeModel}). The experimental data was used to generate a forward kinematics knee model that represented ligaments as springs (\autoref{fig:kneeModel}), and the slack-length for every ligament was estimated using inverse modeling \citep{blankevoort_validation_1996,baldwin_dynamic_2012,ewing_estimating_2015,harris_combined_2016}.
+A calibrated knee model that represents ligaments as springs could be used to estimate specimen-specific nonhomogeneous prestrain in continuum representations of ligaments. \cite{lu_computational_2007} estimated the prestrain in blood vessels using an inverse elastostatics approach, where the deformed state of the geometry and forces were known, and the stress-free shape of the geometry was estimated. The overall purpose of this work is to (1) develop an approach to estimating specimen-specific nonhomogeneous prestrain in ligaments that are represented as a continuum and (2) compare the performance of the continuum ligament representation to an equivalent spring ligament representation. 
 
 %[Approaches: ]
-This approach assumes that the calibrated spring ligament model recreates the ligament's forces at a given joint position. These loading data could be used to define the boundary conditions for a inverse elastostatics analysis of a ligament. \cite{lu_computational_2007} used this approach to estimate the prestrain in blood vessels, where 
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.75\linewidth]{../img/Spec1_Distraction_alPCL_Forces.png}
-    \caption{An example of the forces and moments that the alPCL exerts on the tibia at four points throughout a distraction test at 0\textsuperscript{o}, 30\textsuperscript{o}, 60\textsuperscript{o}, 90\textsuperscript{o} flexion.}
-    \label{fig:alPclForce}
-\end{figure}
+\subsection*{Experimental Testing}
+%[Experimental testing focused the joint's force-displacement response on the soft tissue restraints]
+%[Purpose of these tests is to collect force-displacement data under quasistatic loading conditions with forces that do not injure the ligaments.]
+%[Distraction loads were used to isolate the joint's isolate the joint's restraint to the soft tissues.]
+To achieve this goal, experimental testing was conducted to collect specimen-specific MR images and force-displacement data. The MR images were used to generate specimen-specific geometry, including femur and tibia surfaces, and the insertion sites of ligaments (\autoref{fig:kneeModel}). The forward kinematics model was used to simulate experimental tests in an inverse modeling scheme. This scheme used optimization to estimate ligament slack length by minimizing the residual between the calculated and experimentally measured tibial forces. This process is similar to other studies that have used inverse modeling to estimate ligament properties \citep{blankevoort_validation_1996,baldwin_dynamic_2012,ewing_estimating_2015,harris_combined_2016}.
+%Specimen-specific data was collected from experimental laxity-style distraction tests (\autoref{fig:kneeModel}). The experimental data was used to generate a forward kinematics knee model that represented ligaments as springs (\autoref{fig:kneeModel}), and the slack-length for every ligament was estimated using inverse modeling \citep{blankevoort_validation_1996,baldwin_dynamic_2012,ewing_estimating_2015,harris_combined_2016}.
 
 \begin{figure}
     \centering
@@ -72,11 +75,24 @@ This approach assumes that the calibrated spring ligament model recreates the li
     \label{fig:kneeModel}
 \end{figure}
 
+\subsection*{Inverse Modeling}
+%[Specimen-specific slack lengths were estimated using the experimental data and joint geometry in an inverse modeling scheme]
+This approach assumes that the calibrated spring ligament model recreates the ligament's forces at a given joint position. These loading data could be used to define the boundary conditions for a inverse elastostatics analysis of a ligament. \cite{lu_computational_2007} used this approach to estimate the prestrain in blood vessels, where 
+
 \begin{figure}
     \centering
     \includegraphics[width=0.75\linewidth]{../img/InverseModelingFlowChart.png}
     \caption{An overview of the inverse modeling scheme.}
     \label{fig:inverseModelingScheme}
+\end{figure}
+
+\section*{Prestrain Estimation}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{../img/Spec1_Distraction_alPCL_Forces.png}
+    \caption{An example of the forces and moments that the alPCL exerts on the tibia at four points throughout a distraction test at 0\textsuperscript{o}, 30\textsuperscript{o}, 60\textsuperscript{o}, 90\textsuperscript{o} flexion.}
+    \label{fig:alPclForce}
 \end{figure}
 
 %[Significance of the work]
