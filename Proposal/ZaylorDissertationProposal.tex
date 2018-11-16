@@ -5,14 +5,17 @@
 \usepackage{color, soul}
 \usepackage{graphicx} %package to manage images
 \usepackage{amsmath} % make figures/tables stay in the section they are declared in.
+\usepackage{bm} % Bold values in math equations.
 \usepackage[most]{tcolorbox}
 \usepackage{enumitem} % Enumerate with additional options
 \usepackage{hyperref} % Use \autoref to automatically put figure/table in front of the reference
+\usepackage{threeparttable} % Allow for notes to be placed at the bottom of a table
+\usepackage{multirow} % Allow for a multirow table
 \usepackage[round,authoryear]{natbib} % The bibliography package and settings
 \bibliographystyle{plainnat}
 
 \author{William Zaylor}
-\title{Snappy Dissertation Title}
+\title{Estimation of Nonhomogeneous Prestrain in a Continuum Ligament Model}
     
 \begin{document}
 \maketitle
@@ -30,6 +33,10 @@
 \input{InverseModeling.tex}
 
 % =====================================================================
+\chapter{Inverse Modeling}
+\input{ContinuumPrestrain.tex}
+
+% =====================================================================
 \chapter{Bibliography}
 \bibliography{MyLibrary}
 
@@ -43,6 +50,7 @@
 % nonhomogeneous
 % nonlinear
 % orthopedic
+% slack length
 % soft-tissue
 % specimen-specific
 % stress-free
